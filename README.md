@@ -2,6 +2,8 @@
 
 A Flutter plugin that enables your app to handle "Open With" intents from the system file manager or other apps. It supports custom file extensions and allows you to read the content of the file that opened your app.
 
+<img alt="Demo video" src="https://github.com/WieFel/open_with_app/raw/main/screenshots/demo.gif" width="40%"/>
+
 ## Usage
 
 ```dart
