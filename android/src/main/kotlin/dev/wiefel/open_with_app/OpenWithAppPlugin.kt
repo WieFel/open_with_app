@@ -127,6 +127,9 @@ class OpenWithAppPlugin : FlutterPlugin, MethodCallHandler, ActivityAware,
             if (fileName.isNullOrEmpty()) {
                 fileName = "imported_file"
             }
+
+            // Decode the filename to handle cases like "My%20File.txt" -> "My File.txt"
+            fileName = Uri.decode(fileName)
             
             // Sanitize filename (take only the last part if it contains separators)
             fileName = File(fileName).name

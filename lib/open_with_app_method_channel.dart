@@ -14,12 +14,16 @@ class MethodChannelOpenWithApp extends OpenWithAppPlatform {
 
   @override
   Future<String?> getInitialFile() async {
-    final version = await initialFileChannel.invokeMethod<String>('getInitialFile');
+    final version = await initialFileChannel.invokeMethod<String>(
+      'getInitialFile',
+    );
     return version;
   }
 
   @override
   Stream<String> getFileStream() {
-    return fileStreamChannel.receiveBroadcastStream().map((event) => event as String);
+    return fileStreamChannel.receiveBroadcastStream().map(
+      (event) => event as String,
+    );
   }
 }

@@ -90,11 +90,17 @@ class _MyAppState extends State<MyApp> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('File:', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const Text(
+                    'File:',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   const SizedBox(height: 10),
                   Text(_filePath),
                   const SizedBox(height: 20),
-                  const Text('Content:', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const Text(
+                    'Content:',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   const SizedBox(height: 10),
                   Text(_fileContent),
                 ],

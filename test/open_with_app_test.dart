@@ -7,10 +7,9 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 class MockOpenWithAppPlatform
     with MockPlatformInterfaceMixin
     implements OpenWithAppPlatform {
-
   @override
   Future<String?> getInitialFile() => Future.value('test_file.txt');
-  
+
   @override
   Stream<String> getFileStream() => const Stream.empty();
 }
