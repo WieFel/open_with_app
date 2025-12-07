@@ -40,7 +40,6 @@ Update your `android/app/src/main/AndroidManifest.xml` to include an intent filt
         <data android:scheme="file" />
         <data android:scheme="content" />
         <data android:mimeType="*/*" />
-        <data android:host="*" />
         <data android:pathPattern=".*\\.owa" /> <!-- Change .owa to your extension -->
     </intent-filter>
 
