@@ -1,6 +1,6 @@
 # open_with_app
 
-A plugin for opening specific file types with your app
+A Flutter plugin that enables your app to handle "Open With" intents from the system file manager or other apps. It supports custom file extensions and allows you to read the content of the file that opened your app.
 
 ## Usage
 
@@ -25,7 +25,10 @@ Update your `android/app/src/main/AndroidManifest.xml` to include an intent filt
 ```xml
 <activity ...>
     ...
-    <!-- Add this intent filter -->
+    <!-- 
+       Intent filter for opening files directly (e.g. from File Explorer).
+       Required for handling "Open View" intents.
+    -->
     <intent-filter>
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />
@@ -37,6 +40,10 @@ Update your `android/app/src/main/AndroidManifest.xml` to include an intent filt
         <data android:pathPattern=".*\\.owa" /> <!-- Change .owa to your extension -->
     </intent-filter>
 
+    <!-- 
+       Intent filter for sharing files (e.g. "Share" from another app).
+       Optional: Add this if you want your app to appear in the "Share" sheet.
+    -->
      <intent-filter>
         <action android:name="android.intent.action.SEND" />
         <category android:name="android.intent.category.DEFAULT" />
@@ -52,6 +59,7 @@ Update your `ios/Runner/Info.plist` to register the document type.
 ```xml
 <dict>
     ...
+    <!-- Add the following keys to your Info.plist -->
     <key>LSSupportsOpeningDocumentsInPlace</key>
     <true/>
     <key>UIFileSharingEnabled</key>
