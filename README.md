@@ -65,8 +65,6 @@ Update your `ios/Runner/Info.plist` to register the document type.
     <!-- Add the following keys to your Info.plist -->
     <key>LSSupportsOpeningDocumentsInPlace</key>
     <true/>
-    <key>UIFileSharingEnabled</key>
-    <true/>
     <key>CFBundleDocumentTypes</key>
     <array>
         <dict>
