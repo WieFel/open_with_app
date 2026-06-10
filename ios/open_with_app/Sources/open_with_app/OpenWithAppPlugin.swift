@@ -1,7 +1,7 @@
 import Flutter
 import UIKit
 
-public class OpenWithAppPlugin: NSObject, FlutterPlugin, FlutterStreamHandler {
+public class OpenWithAppPlugin: NSObject, FlutterPlugin, FlutterSceneLifeCycleDelegate, FlutterStreamHandler {
   private var eventSink: FlutterEventSink?
     private var initialFile: String?
 
@@ -14,6 +14,7 @@ public class OpenWithAppPlugin: NSObject, FlutterPlugin, FlutterStreamHandler {
       eventChannel.setStreamHandler(instance)
 
       registrar.addApplicationDelegate(instance)
+      registrar.addSceneDelegate(instance)
     }
 
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
