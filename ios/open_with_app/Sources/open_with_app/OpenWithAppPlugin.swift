@@ -34,6 +34,24 @@ public class OpenWithAppPlugin: NSObject, FlutterPlugin, FlutterSceneLifeCycleDe
       return false
     }
 
+    public func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        if let url = connectionOptions.urlContexts.first?.url {
+            if url.isFileURL {
+                handleFile(url: url)
+            }
+        }
+    }
+
+    public func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) -> Bool {
+        if let url = URLContexts.first?.url {
+            if url.isFileURL {
+                handleFile(url: url)
+                return true
+            }
+        }
+        return false
+    }
+
     private func handleFile(url: URL) {
         var filePath = url.path
         var isSecurityScoped = false
