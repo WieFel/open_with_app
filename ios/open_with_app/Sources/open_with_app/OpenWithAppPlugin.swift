@@ -1,7 +1,7 @@
 import Flutter
 import UIKit
 
-public class OpenWithAppPlugin: NSObject, FlutterPlugin, FlutterStreamHandler {
+public class OpenWithAppPlugin: NSObject, FlutterPlugin, FlutterSceneLifeCycleDelegate, FlutterStreamHandler {
   private var eventSink: FlutterEventSink?
     private var initialFile: String?
 
@@ -14,6 +14,7 @@ public class OpenWithAppPlugin: NSObject, FlutterPlugin, FlutterStreamHandler {
       eventChannel.setStreamHandler(instance)
 
       registrar.addApplicationDelegate(instance)
+      registrar.addSceneDelegate(instance)
     }
 
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
@@ -31,6 +32,22 @@ public class OpenWithAppPlugin: NSObject, FlutterPlugin, FlutterStreamHandler {
           return true
       }
       return false
+    }
+
+    public func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions?) -> Bool {
+        guard let url = connectionOptions?.urlContexts.first?.url, url.isFileURL else { return false }
+        handleFile(url: url)
+        return true
+    }
+
+    public func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) -> Bool {
+        if let url = URLContexts.first?.url {
+            if url.isFileURL {
+                handleFile(url: url)
+                return true
+            }
+        }
+        return false
     }
 
     private func handleFile(url: URL) {
