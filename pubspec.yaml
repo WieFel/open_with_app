@@ -1,6 +1,6 @@
 name: open_with_app
 description: "A plugin for opening specific file types with your app"
-version: 0.1.0
+version: 0.2.0
 homepage: https://github.com/WieFel/open_with_app
 
 environment:
